@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="main">
+        <h1>Simple Calculator</h1>
+        <label for="numberInput" class="lable">Enter Operation (+,-,*,/): </label>
+        <input type="text" id="operation" class="one">
+        <br>
+        <label for="numberInput" class="lable">Enter first number: </label>
+        <input type="number" id="firstNumber" class="one">
+        <br>
+        <label for="numberInput" class="lable">Enter second number: </label>
+        <input type="number" id="secondNumber" class="one">
+        <br>
+        <button onclick="calculateResult()">Calculate</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function calculateResult() {
+            let operation = document.getElementById("operation").value;
+            let firstNumber = parseFloat(document.getElementById("firstNumber").value);
+            let secondNumber = parseFloat(document.getElementById("secondNumber").value);
+
+            let result;
+            switch (operation) {
+                case '+':
+                    result = firstNumber + secondNumber;
+                    break;
+                case '-':
+                    result = firstNumber - secondNumber;
+                    break;
+                case '*':
+                    result = firstNumber * secondNumber;
+                    break;
+                case '/':
+                    if (secondNumber !== 0) {
+                        result = firstNumber / secondNumber;
+                    } else {
+                        document.getElementById('result').innerHTML = 'Cannot divide by zero.';
+                        return;
+                    }
+                    break;
+                default:
+                    document.getElementById('result').innerHTML = 'Invalid operation. Please enter +, -, *, or /.';
+                    return;
+            }
+            document.getElementById('result').innerHTML = `Result: ${result}`;
+        }
+    </script>
+</body>
+
+</html>
